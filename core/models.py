@@ -32,10 +32,14 @@ class SiteSettings(models.Model):
     our_values_description = models.TextField()
 
     contact_description = models.TextField()
+
+    class Meta:
+        verbose_name = "Ayar"
+        verbose_name_plural = "Ayarlar"
     
 
     def __str__(self):
-        return "Settings"
+        return "Ayarlar"
     
     def save(self, *args, **kwargs):
         if not self.pk and SiteSettings.objects.exists():
@@ -49,8 +53,11 @@ class Banner(models.Model):
     description = models.TextField()
 
     def __str__(self):
-        return self.title
+        return self.title_az or self.title
 
+    class Meta:
+        verbose_name = "Banner"
+        verbose_name_plural = "Bannerler"
 
 class Service(models.Model):
     title = models.CharField(max_length=100)
@@ -58,7 +65,11 @@ class Service(models.Model):
     icon = models.TextField()
 
     def __str__(self):
-        return self.title
+        return self.title_az or self.title
+    
+    class Meta:
+        verbose_name = "Xidmət"
+        verbose_name_plural = "Xidmətlər"
 
 
 class Project(models.Model):
@@ -68,7 +79,11 @@ class Project(models.Model):
     link = models.URLField()
 
     def __str__(self):
-        return self.title
+        return self.title_az or self.title
+    
+    class Meta:
+        verbose_name = "Layihə"
+        verbose_name_plural = "Layihələr"
 
 
 class CustomerReview(models.Model):
@@ -78,8 +93,11 @@ class CustomerReview(models.Model):
     star_rating = models.IntegerField()
 
     def __str__(self):
-        return self.title
+        return self.title_az or self.title
 
+    class Meta:
+        verbose_name = "Müştəri Rəyi"
+        verbose_name_plural = "Müştəri Rəyleri"
 
 class Blog(models.Model):
     title = models.CharField(max_length=100)
@@ -90,7 +108,11 @@ class Blog(models.Model):
     blog_date = models.DateField()
 
     def __str__(self):
-        return self.title
+        return self.title_az or self.title
+    
+    class Meta:
+        verbose_name = "Bloq"
+        verbose_name_plural = "Bloqlar"
 
 
 class Contact(models.Model):
@@ -105,10 +127,17 @@ class Contact(models.Model):
     def __str__(self):
         return f"{self.name} {self.surname}"
 
+    class Meta:
+        verbose_name = "Əlaqə"
+        verbose_name_plural = "Əlaqələr"
 
 class SocialMedia(models.Model):
     title = models.TextField()
     icon = models.TextField()
 
     def __str__(self):
-        return self.title
+        return self.title_az or self.title
+    
+    class Meta:
+        verbose_name = "Sosial Media"
+        verbose_name_plural = "Sosial Medialar"
